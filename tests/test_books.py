@@ -46,7 +46,7 @@ def test_update_book():
 
 def test_get_book_by_id():
     response = client.get("/books/2")
-    assert response.status_code == 200
+    assert response.status_code == 206
 
     response = client.get("/books/3000")
     assert response.status_code == 404

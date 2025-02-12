@@ -75,3 +75,17 @@ async def get_book_by_id(book_id: int) -> Book:
         status_code=status.HTTP_404_NOT_FOUND,
         detail= "Book not found"
     )
+
+@router.get("/{book_idd}", response_model=Book, status_code=status.HTTP_200_OK)
+async def get_book_by_name(book_idd: int) -> Book:
+    book = db.get_book(book_idd)
+    # print(book)
+    if book is not None:
+        return JSONResponse(
+            status_code=status.HTTP_200_OK,
+            content=book.model_dump(),
+        )
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail= "Book not found"
+    )

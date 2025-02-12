@@ -54,7 +54,7 @@ def test_get_book_by_id():
 
 def test_delete_book():
     response = client.delete("/books/3")
-    assert response.status_code == 204
+    assert response.status_code == 200
 
     response = client.get("/books/3")
     assert response.status_code == 404

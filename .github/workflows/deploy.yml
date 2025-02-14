@@ -15,6 +15,8 @@ jobs:
           
       - name: Test SSH connection (Verbose)
         run: |
+          mkdir -p ~/.ssh
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> ~/.ssh/config
           ssh -v -i keypair.pem ubuntu@${{ secrets.SERVER_IP }} exit
       
       - name: Deploy via SSH
